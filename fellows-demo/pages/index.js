@@ -4,12 +4,15 @@ import SDK from "weavedb-sdk"
 export default function Home() {
   const contractTxId = "SNencor4RYUP9CEqCXRTWPMSv8WPd4R9YjqhgtmSLtc"
   const COLLECTION_PEOPLE = "people"
+  // State variables storing string values of name, age, and doc ID.
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
   const [docId, setDocId] = useState("")
+  // State variable storing an array of people data
   const [people, setPeople] = useState([])
-
+  // State variable storing the weavedb-sdk object
   const [db, setDb] = useState(null)
+  // State variable storing a boolean value indicating whether database initialization is complete.
   const [initDb, setInitDb] = useState(false)
 
   const handleAddClick = async () => {
@@ -48,6 +51,7 @@ export default function Home() {
     }
   }
 
+  // Function to retrieve all people data from the database.
   const getPeople = async () => {
     try {
       const res = await db.cget(COLLECTION_PEOPLE)
@@ -58,6 +62,7 @@ export default function Home() {
     }
   }
 
+  // Effect hook to initialize the database object on component mount.
   useEffect(() => {
     ;(async () => {
       try {
@@ -73,6 +78,7 @@ export default function Home() {
     })()
   }, [])
 
+  // Effect hook to retrieve people data from the database on database initialization.
   useEffect(() => {
     if (initDb) {
       getPeople()
