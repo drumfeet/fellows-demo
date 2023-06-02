@@ -87,41 +87,60 @@ export default function Home() {
 
   return (
     <>
-      <label>Name</label>
-      <input
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br />
-      <label>Age</label>
-      <input
-        placeholder="Age"
-        value={age}
-        type="number"
-        onChange={(e) => setAge(e.target.value)}
-      />
-      <br /> <br />
-      <button onClick={handleAddClick}>ADD</button>
-      <br /> <br />
-      <label>Document ID</label>
-      <input
-        placeholder="DocId"
-        value={docId}
-        onChange={(e) => setDocId(e.target.value)}
-      />
-      <br />
-      <button onClick={handleSetClick}>SET</button>
-      <br />
-      <button onClick={handleUpsertClick}>UPSERT</button>
-      <br /> <br />
-      <ul>
-        {people.map((item, index) => (
-          <li key={index}>
-            {item.data.name} : {item.data.age}
-          </li>
-        ))}
-      </ul>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <label>Name</label>
+        <input
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <br />
+        <label>Age</label>
+        <input
+          placeholder="Age"
+          value={age}
+          type="number"
+          onChange={(e) => setAge(e.target.value)}
+        />
+        <br /> <br />
+        <button onClick={handleAddClick}>ADD</button>
+        <br /> <br />
+        <label>Document ID</label>
+        <input
+          placeholder="DocId"
+          value={docId}
+          onChange={(e) => setDocId(e.target.value)}
+        />
+        <br />
+        <button onClick={handleSetClick}>SET</button>
+        <br />
+        <button onClick={handleUpsertClick}>UPSERT</button>
+        <br /> <br />
+        <table cellPadding="8px">
+          <thead>
+            <tr align="left">
+              <th>Name</th>
+              <th>Age</th>
+              <th>DocId</th>
+            </tr>
+          </thead>
+          <tbody>
+            {people.map((item, index) => (
+              <tr key={index}>
+                <td>{item.data.name}</td>
+                <td>{item.data.age}</td>
+                <td>{item.id}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   )
 }
