@@ -89,10 +89,16 @@ export default function Home() {
     }
   }
 
+  const logout = async () => {
+    await lf.removeItem("temp_address:current")
+    setUser(null, "temp_current")
+    console.log("<<logout()")
+  }
+
   const handleLoginClick = async () => {
     try {
       login()
-      console.log("handleLoginClick")
+      console.log("<<handleLoginClick()")
     } catch (e) {
       console.error("handleLoginClick", e)
     }
@@ -169,7 +175,7 @@ export default function Home() {
       >
         <p>{initDb ? "WeaveDB is Ready" : "WeaveDB SDK is not initialized"}</p>
         {!isNil(user) ? (
-          <button>{user.wallet.slice(0, 8)}</button>
+          <button onClick={logout}>{user.wallet.slice(0, 8)}</button>
         ) : (
           <button onClick={handleLoginClick}>Connect Wallet</button>
         )}
