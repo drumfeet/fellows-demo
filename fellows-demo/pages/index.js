@@ -5,7 +5,7 @@ import lf from "localforage"
 import { isNil } from "ramda"
 
 export default function Home() {
-  const contractTxId = "SNencor4RYUP9CEqCXRTWPMSv8WPd4R9YjqhgtmSLtc"
+  const contractTxId = "9Ha2BIFtT_F6Ne9g8usltQP0MsWOSx0LEd2u60W0P_s"
   const COLLECTION_PEOPLE = "people"
   // State variables storing string values of name, age, and doc ID.
   const [name, setName] = useState("")
