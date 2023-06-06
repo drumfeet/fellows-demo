@@ -222,24 +222,26 @@ export default function Home() {
         <br />
         <button onClick={handleUpsertClick}>UPSERT</button>
         <br /> <br />
-        <table cellPadding="8px">
-          <thead>
-            <tr align="left">
-              <th>Name</th>
-              <th>Age</th>
-              <th>DocId</th>
-            </tr>
-          </thead>
-          <tbody>
-            {people.map((item, index) => (
-              <tr key={index}>
-                <td>{item.data.name}</td>
-                <td>{item.data.age}</td>
-                <td>{item.id}</td>
+        {people && (
+          <table cellPadding="8px">
+            <thead>
+              <tr align="left">
+                <th>Name</th>
+                <th>Age</th>
+                <th>DocId</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {people.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.data.name}</td>
+                  <td>{item.data.age}</td>
+                  <td>{item.id}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   )
