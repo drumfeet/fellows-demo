@@ -108,7 +108,11 @@ export default function Home() {
     const _people = { name: name, age: age }
 
     try {
-      const res = await db.add(_people, COLLECTION_PEOPLE)
+      const res = await db.add(
+        _people,
+        COLLECTION_PEOPLE,
+        ...(user !== null ? [user] : [])
+      )
       getPeople()
       console.log(res)
     } catch (e) {
@@ -120,7 +124,12 @@ export default function Home() {
     const _people = { name: name, age: age }
 
     try {
-      const res = await db.set(_people, COLLECTION_PEOPLE, docId)
+      const res = await db.set(
+        _people,
+        COLLECTION_PEOPLE,
+        docId,
+        ...(user !== null ? [user] : [])
+      )
       getPeople()
       console.log(res)
     } catch (e) {
@@ -132,7 +141,12 @@ export default function Home() {
     const _people = { name: name, age: age }
 
     try {
-      const res = await db.upsert(_people, COLLECTION_PEOPLE, docId)
+      const res = await db.upsert(
+        _people,
+        COLLECTION_PEOPLE,
+        docId,
+        ...(user !== null ? [user] : [])
+      )
       getPeople()
       console.log(res)
     } catch (e) {
