@@ -105,7 +105,7 @@ export default function Home() {
   }
 
   const handleAddClick = async () => {
-    const _people = { name: name, age: age }
+    const _people = { name: name, age: Number(age) }
 
     try {
       const res = await db.add(
@@ -121,7 +121,7 @@ export default function Home() {
   }
 
   const handleSetClick = async () => {
-    const _people = { name: name, age: age }
+    const _people = { name: name, age: Number(age) }
 
     try {
       const res = await db.set(
@@ -138,7 +138,7 @@ export default function Home() {
   }
 
   const handleUpsertClick = async () => {
-    const _people = { name: name, age: age }
+    const _people = { name: name, age: Number(age) }
 
     try {
       const res = await db.upsert(
@@ -159,7 +159,7 @@ export default function Home() {
     try {
       const res = await db.cget(COLLECTION_PEOPLE)
       setPeople(res)
-      console.log(res)
+      console.log("getPeople()", res)
     } catch (e) {
       console.error(e)
     }
