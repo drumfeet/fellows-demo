@@ -6,6 +6,7 @@ import { isNil } from "ramda"
 
 export default function Home() {
   const contractTxId = "9Ha2BIFtT_F6Ne9g8usltQP0MsWOSx0LEd2u60W0P_s"
+  const sonarLink = `https://sonar.warp.cc/?#/app/contract/${contractTxId}`
   const COLLECTION_PEOPLE = "people"
   // State variables storing string values of name, age, and doc ID.
   const [name, setName] = useState("")
@@ -187,9 +188,16 @@ export default function Home() {
           alignItems: "center",
         }}
       >
+        <a href={sonarLink} target="_blank" rel="noopener noreferrer">
+          Contract Transactions
+        </a>
+        <br />
+        <br />
         <p>{initDb ? "WeaveDB is Ready" : "WeaveDB SDK is not initialized"}</p>
         {!isNil(user) ? (
-          <button onClick={logout}>{user.wallet.slice(0, 8)}</button>
+          <button onClick={logout}>
+            {user.wallet.slice(0, 5)}...{user.wallet.slice(-5)}
+          </button>
         ) : (
           <button onClick={handleLoginClick}>Connect Wallet</button>
         )}
@@ -222,26 +230,24 @@ export default function Home() {
         <br />
         <button onClick={handleUpsertClick}>UPSERT</button>
         <br /> <br />
-        {people && (
-          <table cellPadding="8px">
-            <thead>
-              <tr align="left">
-                <th>Name</th>
-                <th>Age</th>
-                <th>DocId</th>
+        <table cellPadding="8px">
+          <thead>
+            <tr align="left">
+              <th>Name</th>
+              <th>Age</th>
+              <th>DocId</th>
+            </tr>
+          </thead>
+          <tbody>
+            {people.map((item, index) => (
+              <tr key={index}>
+                <td>{item.data.name}</td>
+                <td>{item.data.age}</td>
+                <td>{item.id}</td>
               </tr>
-            </thead>
-            <tbody>
-              {people.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.data.name}</td>
-                  <td>{item.data.age}</td>
-                  <td>{item.id}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   )
