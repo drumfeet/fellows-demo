@@ -5,7 +5,7 @@ import lf from "localforage"
 import { isNil } from "ramda"
 
 export default function Home() {
-  const contractTxId = "9Ha2BIFtT_F6Ne9g8usltQP0MsWOSx0LEd2u60W0P_s"
+  const contractTxId = "L8rEX1QfZfRK93vJ2f5M3aMeDlUBsq2McInpRtmrZ_w"
   const sonarLink = `https://sonar.warp.cc/?#/app/contract/${contractTxId}`
   const COLLECTION_PEOPLE = "people"
   // State variables storing string values of name, age, and doc ID.
@@ -40,7 +40,7 @@ export default function Home() {
       const _db = new SDK({
         contractTxId: contractTxId,
       })
-      await _db.initializeWithoutWallet()
+      await _db.init()
       setDb(_db)
       setInitDb(true)
     } catch (e) {
